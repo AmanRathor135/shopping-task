@@ -1,0 +1,49 @@
+<section>
+  <h2 class="text-center mt-2">{{ productName }}</h2>
+  <hr />
+  <!-- <pre>{{productDetail | json}}</pre> -->
+  <div
+    class="card mt-3 mb-3"
+    style="max-width: 720px"
+    *ngFor="let item of productDetail"
+  >
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{{ item.image }}" class="img" height="300px" width="300px" alt="..." />
+      </div>
+      <div class="col-md-6 mt-4">
+        <h4>{{ item.title }}</h4>
+        <div class="mb-2">
+          Category : <span class="fw-bold">{{ item.category }}</span>
+        </div>
+        <div class="mb-2">
+          Price : <span class="fw-bold">{{ item.price | currency }}</span>
+        </div>
+        <div class="mb-3">
+          Quantity :
+          <span>&nbsp;
+            <button type="button" class="button" (click)="removeValue()">-</button>&nbsp;
+            <input type="number" min="1"  [value]="value" style="width: 15%;"/>&nbsp;
+            <button type="button" class="button" (click)="addValue()">+</button>
+          </span>
+        </div>
+        <div class="mb-2">
+          Rating : <span class="fw-bold">{{ item.rating.rate }}</span>
+        </div>
+        <div class="mb-2" style="margin-left: 30%;">
+          <button [routerLink]="['/categories/cart',item.id]" type="button" class="btn btn-primary">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <table>
+          <thead>
+               <th>Title</th>
+               <th>Category</th>
+               <th>price</th>
+               <th>quantity</th>
+               <th>add to cart</th>
+               <th>Rating</th>
+          </thead>
+     </table> -->
+</section>
