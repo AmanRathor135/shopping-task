@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
-import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -22,15 +21,7 @@ const routes: Routes = [
           import('../categories/categories.module').then(
             (m) => m.CategoriesModule
           ),
-      },
-      {
-        path: 'page-not-found',
-        component: PageNotFoundComponent,
-      },
-      {
-        path: '**',
-        component: PageNotFoundComponent,
-      },
+      }
     ],
   },
 ];

@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
-  styleUrls: ['./side-bar.component.scss']
+  styleUrls: ['./side-bar.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class SideBarComponent implements OnInit {
 
   categories:any[] =[];
-  constructor(private auth:AuthService, private router:Router) { }
+  constructor(private auth:AuthService, private router:Router, private cd:ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.getAllCategories()
@@ -30,7 +31,8 @@ export class SideBarComponent implements OnInit {
         console.log("Error", err);
       },
       complete: () => {
-        console.log("Completed!");
+        // console.log("Completed!");
+        this.cd.markForCheck();
       }
     })
   }

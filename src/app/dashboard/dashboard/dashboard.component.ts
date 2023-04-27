@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit {
 
   categories:any[] = [];
   products:any[] = [];
   limit:number = 6;
-  constructor(private auth:AuthService, private router:Router) { }
+  constructor(private auth:AuthService, private router:Router, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -29,6 +30,7 @@ export class DashboardComponent implements OnInit {
       },
       complete: () => {
         // console.log("Completed!");
+        this.cd.markForCheck();
       }
     })
   }
