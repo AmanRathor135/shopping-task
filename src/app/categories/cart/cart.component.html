@@ -1,1 +1,67 @@
-<p>cart works!</p>
+<section class="mt-4">
+  <h2 class="text-center mb-3">Shopping Cart</h2>
+  <hr />
+
+  <table
+  class="table table-bordered table-striped table-light text-center"
+  >
+  <thead>
+    <tr>
+      <th colspan="6">
+        
+        <h2 class="text-center">My Carts</h2>
+        </th>
+      </tr>
+      <tr>
+        <th class="fs-5">Product Name</th>
+        <th class="fs-5">Category</th>
+        <th class="fs-5">Quantity</th>
+        <th class="fs-5">Price</th>
+        <th class="fs-5">Total</th>
+        <th class="fs-5">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of product; let i = index">
+        <td>{{ item.title }}</td>
+        <td>{{ item.category | titlecase }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price | currency }}</td>
+        <td>{{ item.quantity * item.price | currency }}</td>
+        <td>
+          <div>
+            <button type="button" class="btn btn-danger" (click)="remove(i)">
+              Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4"></td>
+        <td class="fw-bold" *ngIf="product.length>0"><span>Total Amount is : </span><span class="fs-5"> {{ totalSum | currency }}</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-around mt-5">
+    <div>
+      <button
+        [routerLink]="['/dashboard']"
+        type="button"
+        class="btn btn-primary"
+      >
+        Continue Shopping
+      </button>
+    </div>
+    <div>
+      <button
+        [routerLink]="['page-not-found']"
+        type="button"
+        class="btn btn-primary"
+      >
+        Checkout
+      </button>
+    </div>
+  </div>
+</section>

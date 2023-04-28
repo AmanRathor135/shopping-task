@@ -1,12 +1,12 @@
 <section class="sidebar text-white">
   <h2 class="mb-2 mt-2" style="padding: 10px;">Categories</h2>
   <hr />
-  <ul class="nav flex-column" *ngFor="let item of categories; let i = index">
-    <li class="nav-item mb-2">
+  <ul class="nav flex-column">
+    <li class="nav-item mb-2" *ngFor="let item of categories">
       <span
-        [routerLink]="['/categories/category/', item]"
+      class="list"
+        [routerLink]="['/categories/category',item]"
         [routerLinkActive]="'active'"
-        style="padding: 10px;"
       >
         {{ item | titlecase }}
       </span>

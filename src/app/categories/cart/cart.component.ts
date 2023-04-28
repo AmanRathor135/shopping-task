@@ -1,43 +1,41 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { ProductDetailsComponent } from '../product-details/product-details.component';
+import { Component, OnInit } from "@angular/core";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  selector: "app-cart",
+  templateUrl: "./cart.component.html",
+  styleUrls: ["./cart.component.scss"],
 })
-export class CartComponent implements OnInit, AfterViewInit {
+export class CartComponent implements OnInit {
+  productID: any;
+  product: any[] = [];
+  totalSum: any = 0;
 
-  @ViewChild(ProductDetailsComponent, {read:ElementRef}) price:any;
-  productID:any;
-  productPrice:any;
-  constructor(private route:ActivatedRoute, private auth:AuthService, private router:Router) {
-
-    this.route.paramMap.subscribe((res:any) => {
-      this.productID = res.params.id;
-      console.log("res==>",this.productID); 
-    })
-   }
+  constructor(private auth: AuthService) {}
 
   ngOnInit(): void {
-    this.addToCart();
-  }
-  ngAfterViewInit(): void {
-    this.productPrice = this.price.value;
-    console.log("price",this.productPrice);
-    
+    this.getCartList();
+    this.total();
   }
 
-
-  addToCart(){
-    this.auth.getSingleProduct(this.productID).subscribe({
-      next: (res:any) => {
-        console.log("add to cart",res);
-        
-      }
-    })
+  getCartList() {
+    const getSelectedItem: any = localStorage.getItem("addCartItem");
+    this.product = JSON.parse(getSelectedItem);
+    this.auth.totalItems.next(this.product.length);
   }
 
+  remove(index: any) {
+    if (this.product.length) {
+      this.product.splice(index, 1);
+      this.auth.totalItems.next(this.product.length);
+      localStorage.setItem("addCartItem", JSON.stringify(this.product));
+    }
+  }
+
+  total() {
+    for (let i = 0; i < this.product.length; i++) {
+      this.totalSum += this.product[i].price * this.product[i].quantity;
+    }
+    console.log("total", this.totalSum);
+  }
 }

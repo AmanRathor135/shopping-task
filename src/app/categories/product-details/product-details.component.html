@@ -5,19 +5,19 @@
   <div
     class="card mt-3 mb-3"
     style="max-width: 720px"
-    *ngFor="let item of productDetail"
+
   >
     <div class="row">
       <div class="col-md-6">
-        <img src="{{ item.image }}" class="img" height="300px" width="300px" alt="..." />
+        <img src="{{  productDetail?.image }}" class="img" height="300px" width="300px" alt="..." />
       </div>
       <div class="col-md-6 mt-4">
-        <h4>{{ item.title }}</h4>
+        <h4>{{  productDetail?.title }}</h4>
         <div class="mb-2">
-          Category : <span class="fw-bold">{{ item.category }}</span>
+          Category : <span class="fw-bold">{{  productDetail?.category }}</span>
         </div>
         <div class="mb-2">
-          Price : <span class="fw-bold">{{ item.price | currency }}</span>
+          Price : <span class="fw-bold">{{  productDetail?.price | currency }}</span>
         </div>
         <div class="mb-3">
           Quantity :
@@ -28,10 +28,10 @@
           </span>
         </div>
         <div class="mb-2">
-          Rating : <span class="fw-bold">{{ item.rating.rate }}</span>
+          Rating : <span class="fw-bold">{{  productDetail?.rating?.rate }}</span>
         </div>
         <div class="mb-2" style="margin-left: 30%;">
-          <button [routerLink]="['/categories/cart',item.id]" type="button" class="btn btn-primary">Add to Cart</button>
+          <button type="button" class="btn btn-primary" (click)="goToCart(productDetail)">Add to Cart</button>
         </div>
       </div>
     </div>

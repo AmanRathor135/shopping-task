@@ -1,15 +1,22 @@
 .sidebar{
      border: 1px solid black;
      background-color: rgb(19, 19, 43);
+     margin-top: 100px;
+     position: fixed;
+     height: 100vh;
 }
 
 .content{
      padding: 0px;
-     // background-color: #e3f0f0;
+     margin-top: 100px;
+     margin-left: 17%;
+     position: relative;
+  // background-color: #e3f0f0;
 }
+
 
 .dashboard-content{
      padding: 10px;
      margin: 10px;
-     justify-content: center;
+     justify-content: center ;
 }

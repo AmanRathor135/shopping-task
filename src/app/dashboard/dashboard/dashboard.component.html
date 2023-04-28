@@ -1,7 +1,7 @@
 <!-- <section> -->
-  <h1 class="text-center mt-3">All Products are Available Here...</h1> 
-  <hr>
-<div class="dashboard-content gap-2 row mb-2">
+<h1 class="text-center mt-3 z-2">All Products are Available Here...</h1>
+<hr />
+<div class="dashboard-content gap-3 row mb-2">
   <div
     class="card col-md-4"
     style="width: 31rem"
@@ -12,17 +12,12 @@
     <div class="card-body">
       <div class="row align-items-center">
         <div class="col-6">
-          <span
-            [routerLink]="['/categories/product-details', item.id]"
-            [routerLinkActive]="'active'"
-          >
-            <h6 class="card-title mb-2">Title : {{ item.title }}</h6>
+          <span>
+            <h6 class="card-title">Title : {{ item.title }}</h6>
           </span>
         </div>
         <div class="col-6">
-          <div class="text-end mr-3 mb-2">
-            Price : {{ item.price | currency }}
-          </div>
+          <div class="text-end mr-3">Price : {{ item.price | currency }}</div>
         </div>
       </div>
     </div>
@@ -34,7 +29,14 @@
         </div>
         <div class="col-6">
           <div class="text-end mr-3 mb-2">
-            <button type="button" class="btn btn-primary">Add to Cart</button>
+            <button
+              [routerLink]="['/categories/product-details', item.id]"
+              [routerLinkActive]="'active'"
+              type="button"
+              class="btn btn-primary"
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
